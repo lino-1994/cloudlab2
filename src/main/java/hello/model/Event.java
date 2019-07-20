@@ -8,8 +8,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javafx.scene.chart.PieChart.Data;
-
 @Entity
 @Table(name = "events")
 @JsonIgnoreProperties(ignoreUnknown = true)
