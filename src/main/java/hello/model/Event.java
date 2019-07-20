@@ -5,7 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javafx.scene.chart.PieChart.Data;
 
 @Entity
 @Table(name = "events")
@@ -41,17 +44,17 @@ public class Event {
 
     private String name;
 
-    private String date;
+    private Data date;
     private String location;
     private String venue;
     private double price;
     private int nTicket;
 
-	public String getDate() {
+	public Data getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Data date) {
 		this.date = date;
 	}
 
