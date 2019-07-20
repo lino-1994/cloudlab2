@@ -44,19 +44,13 @@ public class Event {
 
     private String name;
 
-    private Data date;
+    
     private String location;
     private String venue;
     private double price;
     private int nTicket;
 
-	public Data getDate() {
-		return date;
-	}
 
-	public void setDate(Data date) {
-		this.date = date;
-	}
 
 	public String getLocation() {
 		return location;
