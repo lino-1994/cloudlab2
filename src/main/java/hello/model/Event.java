@@ -41,5 +41,52 @@ public class Event {
 
     private String name;
 
+    private String date;
+    private String location;
+    private String venue;
+    private double price;
+    private int nTicket;
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getVenue() {
+		return venue;
+	}
+
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getnTicket() {
+		return nTicket;
+	}
+
+	public void setnTicket(int nTicket) {
+		this.nTicket = nTicket;
+	}
+
+	
 
 }
