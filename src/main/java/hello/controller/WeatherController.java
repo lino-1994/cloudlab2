@@ -14,6 +14,7 @@ import hello.value.weather.response.OpenWeatherResponse;
 @RestController
 public class WeatherController {
 	  static final String appId= "2f5a929aefa1a0ae9020337a90e7433e";
+	 
 
 	private static final Logger log = LoggerFactory.getLogger(WeatherController.class);
 	
@@ -30,11 +31,11 @@ public class WeatherController {
 		log.info(url);
 		return restTemplate.getForObject(url, OpenWeather.class);
 	}
-	@GetMapping ("/weather")
+	@GetMapping ("/weather/two")
 	public OpenWeatherResponse getTwotWeather (@RequestParam ("city1") String city1, @RequestParam ("city2") String city2) {
 		RestTemplate restTemplate = new RestTemplate();
 		String url1 = "https://api.openweathermap.org/data/2.5/weather?q=" + city1 + "&appId=" + appId;
-		String url2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city2+ "&appId=" + appId;
+		String url2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&appId=" + appId;
 		
 		log.info(url1);
 		log.info(url2);
@@ -46,8 +47,8 @@ public class WeatherController {
 		
 		response.setFirstCity(weather1.getName());
 		response.setSecondCity(weather2.getName());
-		response.setFirstTemp(weather1.getMain().getTemp());
-		response.setSecondTemp(weather2.getMain().getTemp());
+		response.setFirstTemp(weather1.getMain().getTemp() -273.15);
+		response.setSecondTemp(weather2.getMain().getTemp()-273.15);
 
 		return response;
 	}

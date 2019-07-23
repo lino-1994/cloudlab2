@@ -6,6 +6,9 @@ public class OpenWeatherResponse {
 	private double firstTemp;
 	private double secondTemp;
 	
+	public OpenWeatherResponse() {
+		super();
+	}
 	public String getFirstCity() {
 		return firstCity;
 	}
