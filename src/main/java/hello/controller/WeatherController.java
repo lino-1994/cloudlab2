@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import hello.value.weather.OpenWeather;
+import hello.value.weather.response.OpenWeatherResponse;
 
 @RestController
 public class WeatherController {
-	 
+	  static final String appId= "2f5a929aefa1a0ae9020337a90e7433e";
+
 	private static final Logger log = LoggerFactory.getLogger(WeatherController.class);
 	
-	@GetMapping ("/weather/{cityName}/{countryCode}/{appId}")
-	public OpenWeather getWeather(@PathVariable String cityName, @PathVariable String countryCode, @PathVariable String appId) {
+	@GetMapping ("/weather/{cityName},{countryCode}")
+	public OpenWeather getWeather(@PathVariable String cityName, @PathVariable String countryCode) {
 		
 		RestTemplate restTemplate = new RestTemplate();
-		/*
-		 * final String appId= blablavla
-		 * String cityName= "MIlano";
+		 /* String cityName= "MIlano";
 		 * String countryName="IT";
 		 * this without take variable in the Path
 		 */
@@ -31,10 +31,25 @@ public class WeatherController {
 		return restTemplate.getForObject(url, OpenWeather.class);
 	}
 	@GetMapping ("/weather")
-	public OpenWeather getTwotWeather (@RequestParam String cName1, String cC1, String cName2, String cC2, String appId ) {
+	public OpenWeatherResponse getTwotWeather (@RequestParam ("city1") String city1, @RequestParam ("city2") String city2) {
 		RestTemplate restTemplate = new RestTemplate();
+		String url1 = "https://api.openweathermap.org/data/2.5/weather?q=" + city1 + "&appId=" + appId;
+		String url2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city2+ "&appId=" + appId;
 		
-		return null;
+		log.info(url1);
+		log.info(url2);
+		
+		OpenWeather weather1 = restTemplate.getForObject(url1, OpenWeather.class);
+		OpenWeather weather2 = restTemplate.getForObject(url2, OpenWeather.class);
+		
+		OpenWeatherResponse response = new OpenWeatherResponse();
+		
+		response.setFirstCity(weather1.getName());
+		response.setSecondCity(weather2.getName());
+		response.setFirstTemp(weather1.getMain().getTemp());
+		response.setSecondTemp(weather2.getMain().getTemp());
+
+		return response;
 	}
 	
 	
