@@ -1,5 +1,9 @@
 package hello.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +24,30 @@ public class Event {
         this.name = name;
     }
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+
+    private String name;
+
+    
+    private String venueCode;
+   
+    private LocalDateTime localDataTime;
+    
+    @Column(precision=7, scale=2)
+    private BigDecimal price;
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -28,60 +56,30 @@ public class Event {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private String name;
-
-    
-    private String location;
-    private String venue;
-    private double price;
-    private int nTicket;
-
-
-
-	public String getLocation() {
-		return location;
+	public String getVenueCode() {
+		return venueCode;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setVenueCode(String venueCode) {
+		this.venueCode = venueCode;
 	}
 
-	public String getVenue() {
-		return venue;
+	public LocalDateTime getLocalDataTime() {
+		return localDataTime;
 	}
 
-	public void setVenue(String venue) {
-		this.venue = venue;
+	public void setLocalDataTime(LocalDateTime localDataTime) {
+		this.localDataTime = localDataTime;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-
-	public int getnTicket() {
-		return nTicket;
-	}
-
-	public void setnTicket(int nTicket) {
-		this.nTicket = nTicket;
-	}
-
-	
-
+    
 }
+    
+
